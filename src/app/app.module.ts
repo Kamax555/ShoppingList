@@ -11,6 +11,8 @@ import { RecipesItemComponent } from './recipes/recipe-list/recipes-item/recipes
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingListEditComponent } from './shopping-list/shopping-list-edit/shopping-list-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
+import { HttpModule } from '@angular/http'; //add httpmodule
+import { DataService } from './data.service'; //add datasevice doc
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 
 @NgModule({
@@ -27,9 +29,10 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpModule  //add http module
   ],
-  providers: [ShoppingListService],
+  providers: [DataService, ShoppingListService],  //add dataservice
   bootstrap: [AppComponent]
 })
 export class AppModule { }
