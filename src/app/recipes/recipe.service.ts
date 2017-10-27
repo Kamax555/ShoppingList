@@ -1,16 +1,28 @@
 import { EventEmitter } from '@angular/core';
-
+import { Injectable } from '@angular/core';
 import { Recipe } from './recipes.model';
 
+import { Http, Headers, RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/map';
+
+@Injectable()
 export class RecipeService {
   recipeSelected = new EventEmitter<Recipe>();
 
-  private recipes: Recipe[] = [
-    new Recipe('A Test Recipe', 'This is a test',
-     'http://s3.amazonaws.com/finecooking.s3.tauntonclud.com/app/uploads/2017/04/18180350/051SIP112-grilled-mustard-rosemary-chicken-recipe-alt-main.jpg')
-  ];
+  private recipes: Recipe[]= [];
 
+  constructor(private _http: Http) { }
   getRecipes() {
-    return this.recipes.slice();
+    return this._http.get('/api/recipes')
+           .map (response => {
+               const recipes = response.json();
+               let transformedRecipe: Recipe[] = [];
+               for (let recipe of recipes){
+                  transformedRecipe.push(new Recipe(recipe.name, recipe.description, recipe.img));
+               }
+               this.recipes = transformedRecipe;
+               return transformedRecipe;
+           });
+          // .catch((error: Response) => Observable.throw (error.json()));
   }
 }

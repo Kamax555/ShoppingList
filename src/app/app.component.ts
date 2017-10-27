@@ -15,7 +15,7 @@ export class AppComponent {
   constructor(private _dataService: DataService) {
     // access the data service's getRecipes() method
 
-    this._dataService.getRecipes()
+    this._dataService.getRecipe()
         .subscribe(
           res => this.tests = res,
           error => console.log(error)

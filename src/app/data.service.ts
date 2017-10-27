@@ -9,11 +9,9 @@ export class DataService {
    result:any;
 
   constructor(private _http: Http) { }
-   
-  getRecipes(){
-    return this._http.get("/api/recipes")
+
+  getRecipe() {
+    return this._http.get('/api/recipes')
      .map(result => this.result = result.json());
-     
   }
-    
 }
