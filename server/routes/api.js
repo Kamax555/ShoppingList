@@ -44,7 +44,7 @@ router.get('/recipes', function(req,res){
        var data = req.body;
        console.log(data);
 
-      /*  recipes.find({}).toArray(function(err,task){
+       recipes.insert(data).then(function(err,task){
           if(err){
           //  console.log(err);
             res.send(err);
@@ -55,7 +55,7 @@ router.get('/recipes', function(req,res){
          res.json(task);
 
         }
-      })*/
+      })
 
 })
 
