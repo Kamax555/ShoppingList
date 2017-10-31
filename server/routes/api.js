@@ -26,15 +26,15 @@ function handleError(res, reason, message, code) {
 //})
 router.get('/recipes', function(req,res){
 
-    recipes.find({}).toArray(function(err,task){
+    recipes.find({}).toArray(function(err,data){
       if(err){
       //  console.log(err);
         res.send(err);
         res.end();
     }else
     {
-      //console.log(task);
-     res.json(task);
+      console.log(data);
+     res.json(data);
 
     }
   })
@@ -42,9 +42,9 @@ router.get('/recipes', function(req,res){
 
   router.post('/recipes', function(req,res){
        var data = req.body;
-       console.log(data);
+      // console.log(data);
 
-       recipes.insert(data).then(function(err,task){
+       recipes.insert(data).then(function(err,data){
           if(err){
           //  console.log(err);
             res.send(err);
@@ -52,11 +52,19 @@ router.get('/recipes', function(req,res){
         }else
         {
           //console.log(task);
-         res.json(task);
+         res.json(data);
+         //console.log(data);
 
         }
       })
-
-})
+ });
+  router.delete('/recipes/:id', function(req,res){
+    recipes.remove({
+      _id:req.params.id }, function(err,data){
+        if(err)
+          res.send(err);
+          res.json({message:"Recipes successfully deleted !"});
+      })
+  });
 
 module.exports = router;
