@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 
-import { Ingredient } from '../../shared/ingredient.model';
+import { NewRecipe } from '../NewRecipe.model';
 import { ShoppingListService } from '../shopping-list.service';
 
 @Component({
@@ -10,7 +10,8 @@ import { ShoppingListService } from '../shopping-list.service';
 })
 export class ShoppingListEditComponent implements OnInit {
   @ViewChild('nameInput') nameInputRef: ElementRef;
-  @ViewChild('amountInput') amountInputRef: ElementRef;
+  @ViewChild('desInput') desInputRef: ElementRef;
+  @ViewChild('imgInput') imgInputRef: ElementRef;
 
   constructor(private slService: ShoppingListService) { }
 
@@ -19,9 +20,10 @@ export class ShoppingListEditComponent implements OnInit {
 
   onAddItem() {
     const ingName = this.nameInputRef.nativeElement.value;
-    const ingAmount = this.amountInputRef.nativeElement.value;
-    const newIngredient = new Ingredient(ingName, ingAmount);
-    this.slService.addIngredient(newIngredient);
+    const ingDes = this.desInputRef.nativeElement.value;
+    const ingImg = this.imgInputRef.nativeElement.value;
+    const newRecipeModel = new NewRecipe(ingName, ingDes, ingImg);
+    this.slService.addNewRecipes(newRecipeModel);
   }
 
 }

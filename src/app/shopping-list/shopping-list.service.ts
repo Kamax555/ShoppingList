@@ -1,19 +1,19 @@
-import { Ingredient } from '../shared/ingredient.model';
+import { NewRecipe } from './NewRecipe.model';
 import { EventEmitter } from '@angular/core';
 
 export class ShoppingListService {
-  ingredientsChanged = new EventEmitter<Ingredient[]>();
-  private ingredients: Ingredient[] = [
-    new Ingredient('Apples', 5),
-    new Ingredient('Tomatoes', 10),
+  newRecipeChanged = new EventEmitter<NewRecipe[]>();
+  private newRecipes: NewRecipe[] = [
+    new NewRecipe('Apples', 'newapp', 'http://www.madrasmasala.com/admin/img/blog/test'),
+    new NewRecipe('Tomatoes', 'new tomatoes', 'http://www.madrasmasala.com/admin/img/blog/test'),
   ];
 
-  getIngredients() {
-    return this.ingredients.slice();
+  getNewRecipes() {
+    return this.newRecipes.slice();
   }
 
-  addIngredient(ingredient: Ingredient) {
-    this.ingredients.push(ingredient);
-    this.ingredientsChanged.emit(this.ingredients.slice());
+  addNewRecipes(ingredient: NewRecipe) {
+    this.newRecipes.push(ingredient);
+    this.newRecipeChanged.emit(this.newRecipes.slice());
   }
 }
