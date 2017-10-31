@@ -18,7 +18,7 @@ export class RecipeService {
                const recipes = response.json();
                let transformedRecipe: Recipe[] = [];
                for (let recipe of recipes){
-                  transformedRecipe.push(new Recipe(recipe.name, recipe.description, recipe.img));
+                  transformedRecipe.push(new Recipe(recipe._id, recipe.name, recipe.description, recipe.img));
                }
                this.recipes = transformedRecipe;
                return transformedRecipe;
