@@ -12,7 +12,7 @@ var recipes;
     if(err) throw err;
     console.log("successfully connected!");
       recipes = db.collection('Recipes');
-      
+
 });
 
 // Generic error handler used by all endpoints.
@@ -35,11 +35,28 @@ router.get('/recipes', function(req,res){
     {
       //console.log(task);
      res.json(task);
-        
+
     }
   })
-    
+});
+
+  router.post('/recipes', function(req,res){
+       var data = req.body;
+       console.log(data);
+
+      /*  recipes.find({}).toArray(function(err,task){
+          if(err){
+          //  console.log(err);
+            res.send(err);
+            res.end();
+        }else
+        {
+          //console.log(task);
+         res.json(task);
+
+        }
+      })*/
+
 })
 
 module.exports = router;
-  
