@@ -33,7 +33,7 @@ router.get('/recipes', function(req,res){
         res.end();
     }else
     {
-      console.log(data);
+      //console.log(data);
      res.json(data);
 
     }
@@ -59,12 +59,20 @@ router.get('/recipes', function(req,res){
       })
  });
   router.delete('/recipes/:id', function(req,res){
-    recipes.remove({
-      _id:req.params.id }, function(err,data){
-        if(err)
+     const x = parseInt(req.params.id);
+      recipes.deleteOne({ _id:x}, function(err,result){
+        //console.log(typeof(req.params.id));
+        if(err){
           res.send(err);
+          throw err;
+          res.json({message:"Recipes deleted  failed!"});
+
+        }else{
           res.json({message:"Recipes successfully deleted !"});
-      })
+
+        }
+    })
+
   });
 
 module.exports = router;

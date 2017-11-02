@@ -10,8 +10,8 @@ export class ShoppingListService {
   constructor(private _http: Http) {}
   newRecipeChanged = new EventEmitter<NewRecipe[]>();
   private newRecipes: NewRecipe[] = [
-    new NewRecipe('Apples', 'newapp', 'http://www.madrasmasala.com/admin/img/blog/test'),
-    new NewRecipe('Tomatoes', 'new tomatoes', 'http://www.madrasmasala.com/admin/img/blog/test'),
+    new NewRecipe( 9, 'Apples', 'newapp', 'http://www.madrasmasala.com/admin/img/blog/test'),
+    new NewRecipe( 10, 'Tomatoes', 'new tomatoes', 'http://www.madrasmasala.com/admin/img/blog/test'),
   ];
 
   getNewRecipes() {

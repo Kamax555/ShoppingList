@@ -23,7 +23,8 @@ export class ShoppingListEditComponent implements OnInit {
     const ingName = this.nameInputRef.nativeElement.value;
     const ingDes = this.desInputRef.nativeElement.value;
     const ingImg = this.imgInputRef.nativeElement.value;
-    const newRecipeModel = new NewRecipe(ingName, ingDes, ingImg);
+    const id = Math.floor(Math.random() * 100);
+    const newRecipeModel = new NewRecipe(id, ingName, ingDes, ingImg);
     this.slService.addNewRecipes(newRecipeModel);
   }
 
