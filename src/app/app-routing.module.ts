@@ -7,16 +7,16 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
 import { RecipesDetailComponent } from './recipes/recipes-detail/recipes-detail.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/recipes', pathMatch: 'full'},
-  { path: '/recipes', component: RecipesComponent, children: [
+  { path: '', redirectTo: 'recipes', pathMatch: 'full'},
+  { path: 'recipes', component: RecipesComponent, children: [
     { path: '', component: RecipeStartComponent },
     { path: ':id', component: RecipesDetailComponent}
   ] },
-  { path: '/add-recipe', component: ShoppingListComponent }
+  { path: 'add-recipe', component: ShoppingListComponent }
 ];
 
 @NgModule ({
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [RouterModule.forRoot(appRoutes, { useHash: true})],
   exports: [RouterModule]
 
 })
